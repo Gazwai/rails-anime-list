@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
 
   root to: "animes#index"
+  resources :animes, only: :index
   # resources :lists, except: [:edit, :update] do
   #   resources :bookmarks, only: [:new, :create]
   # end
