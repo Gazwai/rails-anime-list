@@ -2,6 +2,8 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :destroy]
 
   def index
+    @list = List.new
+
     @lists = List.all
   end
 
@@ -9,17 +11,14 @@ class ListsController < ApplicationController
     @bookmark = Bookmark.new
   end
 
-  def new
-    @list = List.new
-  end
-
   def create
-    @list = List.new
+    @list = List.new(list_params)
+    @list.user = Current.user
 
     if @list.save
-      redirect_to root_path, notice: "List created successfully"
+      redirect_to list_path(@list), notice: "List created successfully"
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 

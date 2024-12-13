@@ -1,10 +1,23 @@
 <div>
+  <h1 class="text-4xl"><%= @list.name %></h1>
+
   <% @list.animes.each do |anime| %>
-     <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4">
         <h2 class="text-lg"><%= anime.title %></h2>
         <p><%= anime.overview%></p>
         <p>Score: <%= anime.rating %></p>
         <%= image_tag anime.image_url, width: 200, height: 300 %>
       </div>
   <% end %>
+
+
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+        <div class="">
+          <%= f.association :anime, collection: Anime.all.order(:title), prompt: "Select a anime" %>
+          <%= f.input :comment, placeholder: "Enter a comment about the anime" %>
+        </div>
+        <div class="">
+          <%= f.submit "Add anime", class: "" %>
+        </div>
+      <% end %>
 </div>

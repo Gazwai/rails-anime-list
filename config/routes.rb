@@ -15,8 +15,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :animes, only: :index
-  resources :lists, except: [:edit, :update] do
-    resources :bookmarks, only: [:new, :create]
+
+  resources :lists, only: [:index, :create, :show] do
+    resources :bookmarks, only: [:create, :update]
   end
+
   resources :bookmarks, only: :destroy
 end
