@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_13_055011) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_13_061840) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "animes", force: :cascade do |t|
+    t.string "title"
+    t.text "overview"
+    t.string "image_url"
+    t.integer "rating"
+    t.integer "mal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "list_id", null: false
+    t.bigint "anime_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["anime_id"], name: "index_bookmarks_on_anime_id"
+    t.index ["list_id", "anime_id"], name: "index_bookmarks_on_list_id_and_anime_id", unique: true
+    t.index ["list_id"], name: "index_bookmarks_on_list_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -31,5 +58,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_13_055011) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "bookmarks", "animes"
+  add_foreign_key "bookmarks", "lists"
   add_foreign_key "sessions", "users"
 end
