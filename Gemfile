@@ -58,3 +58,4 @@ group :development do
   gem "web-console"
 end
 
+gem 'simple_form-tailwind'
