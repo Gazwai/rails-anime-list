@@ -1,4 +1,10 @@
 <div>
-  <h1 class="font-bold text-4xl">Lists#show</h1>
-  <p>Find me in app/views/lists/show.html.erb</p>
+  <% @list.animes.each do |anime| %>
+     <div class="flex flex-col gap-4">
+        <h2 class="text-lg"><%= anime.title %></h2>
+        <p><%= anime.overview%></p>
+        <p>Score: <%= anime.rating %></p>
+        <%= image_tag anime.image_url, width: 200, height: 300 %>
+      </div>
+  <% end %>
 </div>
