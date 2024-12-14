@@ -2,6 +2,7 @@ require "open-uri"
 require "json"
 
 puts "Cleaning up database..."
+List.destroy_all
 Anime.destroy_all
 puts "Database cleaned"
 
@@ -13,7 +14,7 @@ url = "https://api.jikan.moe/v4/top/anime"
   animes.each do |anime|
     puts "Creating #{anime["title"]}"
     Anime.create(
-      image_url: anime["images"]["webp"]["image_url"],
+      image_url: anime["images"]["webp"]["large_image_url"],
       mal_id: anime["mal_id"],
       overview: anime["synopsis"],
       rating: anime["score"],

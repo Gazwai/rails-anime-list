@@ -1,10 +1,5 @@
 <div class="flex flex-col gap-4">
   <% @animes.each do | anime | %>
-      <div class="flex flex-col gap-4">
-            <h2 class="text-lg"><%= anime.title %></h2>
-            <p><%= anime.overview%></p>
-            <p>Score: <%= anime.rating %></p>
-            <%= image_tag anime.image_url, width: 200, height: 300 %>
-      </div>
+    <%= render partial: 'anime_card', locals: { anime: anime } %>
   <% end %>
 </div>
