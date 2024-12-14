@@ -59,4 +59,4 @@ group :development do
 end
 
 gem "simple_form"
-gem 'simple_form-tailwind'
+gem "simple_form-tailwind"

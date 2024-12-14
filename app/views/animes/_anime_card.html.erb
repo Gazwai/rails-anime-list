@@ -1,11 +1,11 @@
-<div class="card bg-neutral text-neutral-content lg:card-side shadow-xl">
+<div class="card bg-neutral text-neutral-content lg:card-side lg:rounded-none rounded-md shadow-xl">
   <figure>
-    <%= image_tag anime.image_url, class: "w-full h-48 object-cover rounded-md" %>
+    <%= image_tag anime.image_url, class: "w-full object-cover" %>
   </figure>
 
-  <div class="card-body">
+  <div class="card-body hidden">
     <h2 class="card-title"><%= anime.title %></h2>
-    <p><%= truncate(anime.overview, length: 200, separator: ' ', omission: ' [Read more]')%></p>
+    <p><%= truncate(anime.overview, length: 200, separator: ' ', omission: ' [Read more]') %></p>
     <p>Score: <%= anime.rating %></p>
 
     <div class="card-actions justify-end">

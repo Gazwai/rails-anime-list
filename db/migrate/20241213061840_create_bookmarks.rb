@@ -8,6 +8,6 @@ class CreateBookmarks < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :bookmarks, [:list_id, :anime_id], unique: true
+    add_index :bookmarks, [ :list_id, :anime_id ], unique: true
   end
 end
