@@ -7,8 +7,11 @@
       <p><%= list.name %></p>
     <% end %>
 
+    <p class=""><%= link_to "delete", list_path(list), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete #{list.name} list"}, class: 'text-danger' %></p>
+
     <% list.animes.each do |anime| %>
       <%= image_tag anime.image_url, width: 200, height: 300 %>
+
     <% end %>
   <% end %>
 
