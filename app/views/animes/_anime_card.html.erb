@@ -5,7 +5,7 @@
 
   <div class="card-body hidden">
     <h2 class="card-title"><%= anime.title %></h2>
-    <p><%= truncate(anime.overview, length: 200, separator: ' ', omission: ' [Read more]') %></p>
+    <p><%= truncate(anime.overview, length: 200, separator: " ", omission: " [Read more]") %></p>
     <p>Score: <%= anime.rating %></p>
 
     <div class="card-actions justify-end">

@@ -10,16 +10,16 @@
       <p>Score: <%= anime.rating %></p>
       <%= image_tag anime.image_url, width: 200, height: 300 %>
       <p>comment: <%= bookmark.comment %></p>
-      <p class=""><%= link_to "delete", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{anime.title} from your #{@list.name} list"}, class: 'text-danger' %></p>
+      <p class=""><%= link_to "delete", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{anime.title} from your #{@list.name} list" }, class: "text-danger" %></p>
 
-      <%= simple_form_for [@list, bookmark] do |form| %>
+      <%= simple_form_for [ @list, bookmark ] do |form| %>
         <%= form.input :comment, as: :text, label: "Comment", placeholder: "Write your bookmark comment here" %>
         <%= form.submit "Update Bookmark" %>
       <% end %>
     </div>
   <% end %>
 
-  <%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= simple_form_for [ @list, @bookmark ] do |f| %>
         <div class="">
           <%= f.association :anime, collection: Anime.all.order(:title), prompt: "Select a anime" %>
           <%= f.input :comment, placeholder: "Enter a comment about the anime" %>
