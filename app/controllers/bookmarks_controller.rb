@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmark, only: :destroy
+  before_action :set_bookmark, only: [:update, :destroy]
   before_action :set_list, only: [:update, :create]
 
   def create
@@ -19,6 +19,11 @@ class BookmarksController < ApplicationController
   end
 
   def update
+    if @bookmark.update(bookmark_params)
+      redirect_to list_path(@list), notice: "Bookmark was successfully updated."
+    else
+      render "lists/index", status: :unprocessable_entity
+    end
   end
 
   private
