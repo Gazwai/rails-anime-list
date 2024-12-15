@@ -62,3 +62,4 @@ gem "simple_form"
 gem "simple_form-tailwind"
 gem "erb_lint", require: false
 gem "better_html"
+gem "rails_icons", "~> 1.0"
