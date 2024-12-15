@@ -1,5 +1,9 @@
 <div class="flex flex-col gap-4">
-  <% @animes.each do | anime | %>
-    <%= render partial: "anime_card", locals: { anime: anime } %>
-  <% end %>
+  <h2 class="text-xl">Top 50 Anime</h2>
+
+  <div class="flex overflow-x-auto snap-x snap-mandatory space-x-4 scrollbar-hide w-96">
+    <% @animes.each do | anime | %>
+      <%= render partial: "anime_card", locals: { anime: anime } %>
+    <% end %>
+  </div>
 </div>

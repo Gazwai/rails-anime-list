@@ -1,31 +1,26 @@
-<div>
+<div class="w-96">
   <h1 class="text-4xl"><%= @list.name %></h1>
 
-  <% @list.animes.each do |anime| %>
-    <% bookmark = Bookmark.find_by(list: @list, anime: anime) %>
+  <% if user_owns_list?(@list) %>
+    <div class="my-8">
+      <%= simple_form_for [ @list, @bookmark ] do |f| %>
+        <div class="flex flex-col gap-4">
+          <%= f.association :anime, label: false, collection: Anime.all.order(:title), prompt: "Select a anime", wrapper: false,  input_html: { class: "select select-bordered w-full max-w-sm"} %>
+          <%= f.input :comment, label: false, placeholder: "Enter a comment about the anime" , input_html: { class: "input input-bordered w-full max-w-sm"} %>
+        </div>
 
-    <div class="flex flex-col gap-4">
-      <h2 class="text-lg"><%= anime.title %></h2>
-      <p><%= anime.overview %></p>
-      <p>Score: <%= anime.rating %></p>
-      <%= image_tag anime.image_url, width: 200, height: 300 %>
-      <p>comment: <%= bookmark.comment %></p>
-      <p class=""><%= link_to "delete", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{anime.title} from your #{@list.name} list" }, class: "text-danger" %></p>
-
-      <%= simple_form_for [ @list, bookmark ] do |form| %>
-        <%= form.input :comment, as: :text, label: "Comment", placeholder: "Write your bookmark comment here" %>
-        <%= form.submit "Update Bookmark" %>
+        <div class="flex justify-end">
+          <%= f.submit "Add anime", class: "btn btn-sm btn-primary" %>
+        </div>
       <% end %>
     </div>
   <% end %>
 
-  <%= simple_form_for [ @list, @bookmark ] do |f| %>
-        <div class="">
-          <%= f.association :anime, collection: Anime.all.order(:title), prompt: "Select a anime" %>
-          <%= f.input :comment, placeholder: "Enter a comment about the anime" %>
-        </div>
-        <div class="">
-          <%= f.submit "Add anime", class: "" %>
-        </div>
-      <% end %>
+  <div class="flex flex-col gap-4">
+    <% @list.animes.each do | anime | %>
+      <% bookmark = Bookmark.find_by(list: @list, anime: anime) %>
+
+      <%= render partial: "list_anime_card", locals: { anime: anime, bookmark: bookmark, list: @list } %>
+    <% end %>
+  </div>
 </div>
