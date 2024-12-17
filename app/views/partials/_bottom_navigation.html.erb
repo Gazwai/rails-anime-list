@@ -1,0 +1,23 @@
+<div class="btm-nav">
+  <button>
+    <%= link_to root_path, class: "flex flex-col justify-center items-center" do %>
+      <%= icon "home", library: "heroicons", class: "h-5 w-5" %>
+
+      <span class="btm-nav-label text-xs">Home</span>
+    <% end %>
+  </button>
+  <button class="active">
+    <%= link_to lists_path, class: "flex flex-col justify-center items-center" do %>
+      <%= icon "queue-list", library: "heroicons", class: "h-5 w-5" %>
+
+      <span class="btm-nav-label text-xs">Lists</span>
+    <% end %>
+  </button>
+  <button>
+    <%= link_to animes_path, class: "flex flex-col justify-center items-center" do %>
+      <%= icon "bookmark-square", library: "heroicons", class: "h-5 w-5" %>
+
+      <span class="btm-nav-label text-xs">Animes</span>
+    <% end %>
+  </button>
+</div>
