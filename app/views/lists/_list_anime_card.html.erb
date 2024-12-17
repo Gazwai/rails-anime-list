@@ -1,24 +1,30 @@
-<div class="card card-side bg-base-100 shadow-xl">
+<div class="card card-bordered card-side bg-base-100 shadow-xl">
   <figure>
     <%= image_tag anime.image_url, class: "h-48 w-32 object-cover" %>
   </figure>
 
-  <div class="card-body px-4 py-0 w-52">
+  <div class="card-body p-4 w-52">
     <div class="flex gap-2 justify-between">
-      <h2 class="card-title text-lg"><%= truncate(anime.title, length: user_owns_list?(list) ? 20 : 30, separator: " ") %></h2>
-
-      <% if user_owns_list?(list) %>
-        <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{anime.title} from your #{@list.name} list" }, class: "text-danger" do %>
-          <%= icon "trash", library: "heroicons", class: "h-5 w-5 text-red-800 mt-1" %>
-        <% end %>
-      <% end %>
+      <h2 class="card-title text-base"><%= truncate(anime.title, length: 35, separator: " ") %></h2>
     </div>
-
 
     <% unless user_owns_list?(list) %>
       <p class="text-sm"><%= bookmark.comment %></p>
     <% else %>
-      <%= simple_form_for [ list, bookmark ] do |form| %>
+      <div class="flex flex-col h-full">
+        <p class="text-sm"><%= bookmark.comment %></p>
+
+        <div class="flex gap-4 justify-between">
+          <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{anime.title} from your #{@list.name} list" }, class: "text-danger" do %>
+            <%= icon "trash", library: "heroicons", class: "h-5 w-5 text-red-800 mt-1" %>
+          <% end %>
+
+          <%= icon "pencil-square", library: "heroicons", class: "h-5 w-5 text-primary mt-1" %>
+        </div>
+      </div>
+
+      <%# hidden for now and just stimulus to flip this to edit mode when pencil icon is clicked %>
+      <%= simple_form_for [ list, bookmark ], html: { class: "hidden" }  do |form| %>
         <%= form.input :comment, as: :text, label: false, input_html: { class: 'textarea textarea-bordered' } %>
         <%= form.submit "Update", class: "btn btn-primary btn-xs float-right" %>
       <% end %>
