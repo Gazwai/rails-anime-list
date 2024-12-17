@@ -2,7 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   daisyui: {
-    themes: ["light", "dark", "halloween"],
+    themes: ["light", "dark"],
   },
   content: [
     './public/*.html',
