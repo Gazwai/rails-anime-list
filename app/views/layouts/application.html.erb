@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="halloween">
+<html data-theme="dark">
   <head>
     <title><%= content_for(:title) || "Rails Anime List" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -24,8 +24,12 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-8 px-5 flex">
+    <main class="container mx-auto mt-8 flex flex-col w-96">
+      <h1 class="text-2xl mb-4 text-right" >アニメリスト</h1>
+
       <%= yield %>
+
+      <%= render partial: "partials/bottom_navigation" %>
     </main>
   </body>
 </html>
