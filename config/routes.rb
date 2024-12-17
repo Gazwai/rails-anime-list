@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  root to: "animes#index"
+  root to: "lists#index"
 
   resources :users, only: [ :new, :create ]
-  resources :animes, only: :index
+  resources :animes, only: [ :index, :show ]
 
   resources :lists, only: [ :index, :create, :show ] do
     resources :bookmarks, only: [ :create, :update ]
