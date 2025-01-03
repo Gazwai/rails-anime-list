@@ -10,8 +10,6 @@ class ListsController < ApplicationController
     service = JikanApiService.new()
     @data = service.fetch_data('/v4/top/anime?sfw', { })
 
-    render json: @data
-
   rescue StandardError => e
     render json: { error: e.message }, status: :bad_request
   end
