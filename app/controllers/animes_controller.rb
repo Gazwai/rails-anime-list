@@ -1,5 +1,4 @@
 class AnimesController < ApplicationController
-  allow_unauthenticated_access only: [ :index ]
   before_action :set_anime, only: [ :show]
 
   def index
@@ -7,6 +6,12 @@ class AnimesController < ApplicationController
   end
 
   def show
+    service = JikanApiService.new()
+
+    @data = service.fetch_data("/v4/anime/#{@anime.mal_id}/full", { })["data"]
+
+  rescue StandardError => e
+    render json: { error: e.message }, status: :bad_request
   end
 
   private

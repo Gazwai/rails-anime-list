@@ -6,13 +6,18 @@ class JikanApiService
     @options = {
       headers: {
         'Content-Type' => 'application/json'
-      }
+      },
+      timeout: 5
     }
   end
 
   def fetch_data(endpoint, params ={})
-    response = self.class.get(endpoint, @options.merge(query: params))
-    handle_response(response)
+    begin
+      response = self.class.get(endpoint, @options.merge(query: params))
+      handle_response(response)
+    rescue Net::OpenTimeout, Net::ReadTimeout => e
+      raise "Request timed out: #{e.message}"
+    end
   end
 
   private

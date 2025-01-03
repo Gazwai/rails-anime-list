@@ -1,23 +1,19 @@
 <div class="btm-nav">
-  <button>
-    <%= link_to root_path, class: "flex flex-col justify-center items-center" do %>
-      <%= icon "home", library: "heroicons", class: "h-5 w-5" %>
 
-      <span class="btm-nav-label text-xs">Home</span>
+  <% if user_logged_in? %>
+    <%= link_to Current.session, data: { turbo_method: :delete }, class: "flex flex-col justify-center items-center" do %>
+      <%= icon "arrow-left-start-on-rectangle", library: "heroicons", class: "h-5 w-5" %>
+      <span class="btm-nav-label text-xs">Logout</span>
     <% end %>
-  </button>
-  <button class="active">
-    <%= link_to lists_path, class: "flex flex-col justify-center items-center" do %>
-      <%= icon "queue-list", library: "heroicons", class: "h-5 w-5" %>
+  <% end %>
 
-      <span class="btm-nav-label text-xs">Lists</span>
-    <% end %>
-  </button>
-  <button>
-    <%= link_to animes_path, class: "flex flex-col justify-center items-center" do %>
-      <%= icon "bookmark-square", library: "heroicons", class: "h-5 w-5" %>
+  <%= link_to lists_path, class: "flex flex-col justify-center items-center" do %>
+    <%= icon "queue-list", library: "heroicons", class: "h-5 w-5" %>
+    <span class="btm-nav-label text-xs">Lists</span>
+  <% end %>
 
-      <span class="btm-nav-label text-xs">Animes</span>
-    <% end %>
-  </button>
+  <%= link_to animes_path, class: "flex flex-col justify-center items-center" do %>
+    <%= icon "bookmark-square", library: "heroicons", class: "h-5 w-5" %>
+    <span class="btm-nav-label text-xs">Animes</span>
+  <% end %>
 </div>

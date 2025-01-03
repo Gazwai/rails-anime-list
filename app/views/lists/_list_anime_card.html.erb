@@ -1,6 +1,8 @@
 <div class="card card-bordered card-side bg-base-100 shadow-xl">
   <figure>
-    <%= image_tag anime.image_url, class: "h-48 w-32 object-cover" %>
+    <%= link_to anime_path(anime) do %>
+      <%= image_tag anime.image_url, class: "h-48 w-32 object-cover" %>
+    <% end %>
   </figure>
 
   <div class="card-body p-4 w-52">
@@ -18,8 +20,6 @@
           <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{anime.title} from your #{@list.name} list" }, class: "text-danger" do %>
             <%= icon "trash", library: "heroicons", class: "h-5 w-5 text-red-800 mt-1" %>
           <% end %>
-
-          <%= icon "pencil-square", library: "heroicons", class: "h-5 w-5 text-primary mt-1" %>
         </div>
       </div>
 
