@@ -1,4 +1,6 @@
 <div class="w-96 mb-16">
+  <%= @jikan_data %>
+
   <%= simple_form_for @list, html: { class: "grid grid-cols-3 w-full max-w-sm gap-4 mb-8"}  do |f| %>
     <%= f.input :name, label: false, placeholder: "List Name", input_html: { class: "input input-bordered w-full max-w-sm" }, wrapper_html: { class: "col-span-2" } %>
     <%= f.submit class: "btn btn-primary" %>

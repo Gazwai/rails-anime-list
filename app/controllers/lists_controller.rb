@@ -6,6 +6,14 @@ class ListsController < ApplicationController
     @list = List.new
 
     @lists = List.all
+
+    service = JikanApiService.new()
+    @data = service.fetch_data('/v4/top/anime?sfw', { })
+
+    render json: @data
+
+  rescue StandardError => e
+    render json: { error: e.message }, status: :bad_request
   end
 
   def show

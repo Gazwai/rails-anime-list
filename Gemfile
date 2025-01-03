@@ -65,3 +65,4 @@ gem "better_html"
 gem "rails_icons", "~> 1.0"
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
+gem 'httparty'
