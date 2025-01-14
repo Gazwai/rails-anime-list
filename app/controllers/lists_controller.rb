@@ -28,6 +28,9 @@ class ListsController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   private
 
   def set_list
