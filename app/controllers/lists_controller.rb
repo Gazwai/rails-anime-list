@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  allow_unauthenticated_access only: [ :index, :show ]
   before_action :set_list, only: [ :show, :destroy ]
 
   def index

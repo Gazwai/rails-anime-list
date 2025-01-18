@@ -1,4 +1,5 @@
 class AnimesController < ApplicationController
+  allow_unauthenticated_access only: [ :index, :show ]
   before_action :set_anime, only: [ :show]
 
   def index

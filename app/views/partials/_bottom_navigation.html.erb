@@ -1,6 +1,5 @@
-<div class="btm-nav">
-
-  <% if user_logged_in? %>
+<div class="btm-nav sm:hidden">
+  <% if authenticated? %>
     <%= link_to Current.session, data: { turbo_method: :delete }, class: "flex flex-col justify-center items-center" do %>
       <%= icon "arrow-left-start-on-rectangle", library: "heroicons", class: "h-5 w-5" %>
       <span class="btm-nav-label text-xs">Logout</span>
