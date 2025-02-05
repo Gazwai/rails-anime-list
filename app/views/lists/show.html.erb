@@ -17,7 +17,7 @@
   <% end %>
 
   <div class="flex flex-col gap-4">
-    <% @list.animes.each do | anime | %>
+    <% @list.animes.sort.each do | anime | %>
       <% bookmark = Bookmark.find_by(list: @list, anime: anime) %>
 
       <%= render partial: "list_anime_card", locals: { anime: anime, bookmark: bookmark, list: @list } %>
