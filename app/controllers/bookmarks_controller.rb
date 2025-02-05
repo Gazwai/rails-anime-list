@@ -21,7 +21,12 @@ class BookmarksController < ApplicationController
 
   def update
     if @bookmark.update(bookmark_params)
-      redirect_to list_path(@list), notice: "Bookmark was successfully updated."
+      render turbo_stream:
+      turbo_stream.replace(
+        @bookmark.id,
+        partial: "lists/comment",
+        locals: { bookmark: @bookmark }
+      )
     else
       render "lists/index", status: :unprocessable_entity
     end

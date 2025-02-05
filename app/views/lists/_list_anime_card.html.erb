@@ -17,7 +17,7 @@
     </div>
 
     <div class="flex gap-2 justify-between">
-      <p class="text-sm"><%= bookmark.comment %></p>
+      <%= render partial: "comment", locals: { bookmark: bookmark} %>
 
       <% if user_owns_list?(list) %>
         <button onclick="document.getElementById('modal_<%= bookmark.id %>').showModal()">
@@ -30,13 +30,10 @@
               <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
 
-            <%= simple_form_for [ list, bookmark ]  do |form| %>
-              <%= form.input :comment, as: :text, label: false, input_html: { class: 'textarea textarea-bordered' } %>
-              <div class="modal-action">
-                <form method="dialog">
-                  <%= form.submit "Update", class: "btn btn-primary btn-xs float-right" %>
-                </form>
-              </div>
+            <%= simple_form_for [ list, bookmark ], html: { onsubmit: "document.getElementById('modal_#{bookmark.id}').close();" } do |f| %>
+              <%= f.input :comment, as: :text, label: false, input_html: { class: 'textarea textarea-bordered' } %>
+
+              <%= f.submit "Update", class: "btn btn-primary btn-xs float-right"  %>
             <% end %>
           </div>
         </dialog>
