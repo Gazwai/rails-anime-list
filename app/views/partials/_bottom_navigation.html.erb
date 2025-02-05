@@ -4,6 +4,11 @@
       <%= icon "arrow-left-start-on-rectangle", library: "heroicons", class: "h-5 w-5" %>
       <span class="btm-nav-label text-xs">Logout</span>
     <% end %>
+  <% else  %>
+    <%= link_to new_session_path, class: "flex flex-col justify-center items-center" do %>
+      <%= icon "arrow-right-start-on-rectangle", library: "heroicons", class: "h-5 w-5" %>
+      <span class="btm-nav-label text-xs">Login</span>
+    <% end %>
   <% end %>
 
   <%= link_to lists_path, class: "flex flex-col justify-center items-center" do %>
