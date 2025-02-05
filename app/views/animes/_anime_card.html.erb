@@ -1,4 +1,4 @@
-<div class="flex overflow-x-auto snap-x snap-mandatory space-x-4 scrollbar-hide w-80 gap-4">
+<div class="flex overflow-x-auto snap-x snap-mandatory space-x-4 scrollbar-hide gap-4">
   <% animes.each do |anime| %>
     <%= link_to controller_name == "animes" ? anime_path(anime) : list_path(list), class: "contents" do %>
       <%= image_tag anime.image_url, class: "h-48 w-32 object-cover rounded-md snap-start" %>
