@@ -1,6 +1,12 @@
-<div class="flex flex-col gap-4 mb-20 px-4 pt-4 w-96 mx-auto">
+<div class="max-w-sm md:max-w-3xl mb-20 px-4 pt-4 mx-auto">
 
   <h2 class="text-xl">Top 50 Anime</h2>
 
   <%= render partial: "anime_card", locals: { animes: @top_anime } %>
+</div>
+
+<div class="max-w-sm md:max-w-3xl mb-20 px-4 pt-4 mx-auto">
+  <h2 class="text-xl">Currently Airing</h2>
+
+  <%= render partial: "anime_card", locals: { animes: @currently_airing } %>
 </div>
